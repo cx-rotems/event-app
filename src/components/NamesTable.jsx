@@ -1,35 +1,51 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 const NamesTable = ({ names, handleSort, handleCheckboxChange, sortField }) => {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const filteredNames = names.filter(person =>
+    person.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    person.lastName.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
-    <table>
-      <thead>
-        <tr>
-          <th onClick={() => handleSort('firstName')}>
-            First Name {sortField === 'firstName' && '↓'}
-          </th>
-          <th onClick={() => handleSort('lastName')}>
-            Last Name {sortField === 'lastName' && '↓'}
-          </th>
-          <th>Arrived</th>
-        </tr>
-      </thead>
-      <tbody>
-        {names.map((person) => (
-          <tr key={person.id}>
-            <td>{person.firstName}</td>
-            <td>{person.lastName}</td>
-            <td>
-              <input
-                type="checkbox"
-                checked={person.arrived}
-                onChange={() => handleCheckboxChange(person.id, person.arrived)}
-              />
-            </td>
+    <>
+      <input
+        type="text"
+        placeholder="Search by first or last name"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+      />
+      <table>
+        <thead>
+          <tr>
+            <th onClick={() => handleSort('firstName')}>
+              First Name {sortField === 'firstName' && '↓'}
+            </th>
+            <th onClick={() => handleSort('lastName')}>
+              Last Name {sortField === 'lastName' && '↓'}
+            </th>
+            <th>Arrived</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {filteredNames.map((person) => (
+            <tr key={person.id}>
+              <td>{person.firstName}</td>
+              <td>{person.lastName}</td>
+              <td>
+                <input
+                  type="checkbox"
+                  checked={person.arrived}
+                  onChange={() => handleCheckboxChange(person.id, person.arrived)}
+                />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
   );
 };
 
