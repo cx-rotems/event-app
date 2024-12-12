@@ -67,6 +67,16 @@ const AdminPage = () => {
     }
   };
 
+  const handleRemove = async (id) => {
+    try {
+      await fetch(`/api/names/${id}`, {
+        method: 'DELETE',
+      });
+      fetchNames();
+    } catch (error) {
+      console.error('Error deleting name:', error);
+    }
+  };
 
   const handleLogout = () => {
     logout();
@@ -102,9 +112,11 @@ const AdminPage = () => {
 
       <NamesTable 
         names={names} 
+        isAdmin={true}
         sortField={sortField} 
         handleSort={handleSort}  
         handleCheckboxChange={handleCheckboxChange} 
+        handleRemove={handleRemove} 
       />
     </div>
   );

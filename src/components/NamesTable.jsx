@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-const NamesTable = ({ names, handleSort, handleCheckboxChange, sortField }) => {
+const NamesTable = ({ names, handleSort, handleCheckboxChange, handleRemove, sortField, isAdmin }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const filteredNames = names.filter(person =>
@@ -27,6 +27,7 @@ const NamesTable = ({ names, handleSort, handleCheckboxChange, sortField }) => {
               Last Name {sortField === 'lastName' && '↓'}
             </th>
             <th>Arrived</th>
+            {isAdmin && <th>Action</th>}
           </tr>
         </thead>
         <tbody>
@@ -41,6 +42,13 @@ const NamesTable = ({ names, handleSort, handleCheckboxChange, sortField }) => {
                   onChange={() => handleCheckboxChange(person.id, person.arrived)}
                 />
               </td>
+              {isAdmin && (
+                <td>
+                  <button onClick={() => handleRemove(person.id)}>
+                    Delete
+                  </button>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>
@@ -60,7 +68,9 @@ NamesTable.propTypes = {
   ).isRequired,
   handleSort: PropTypes.func.isRequired,
   handleCheckboxChange: PropTypes.func.isRequired,
+  handleRemove: PropTypes.func.isRequired,
   sortField: PropTypes.string.isRequired,
+  isAdmin: PropTypes.bool.isRequired,
 };
 
 export default NamesTable;
