@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import '../styles/AdminPage.css';
+import NamesTable from './NamesTable';
 
 const AdminPage = () => {
   const [names, setNames] = useState([]);
@@ -83,26 +84,7 @@ const AdminPage = () => {
         <button className="submit-button" type="submit">Add Person</button>
       </form>
 
-      <table className="names-table">
-        <thead>
-          <tr>
-            <th onClick={() => handleSort('firstName')}>
-              First Name {sortField === 'firstName' && '↓'}
-            </th>
-            <th onClick={() => handleSort('lastName')}>
-              Last Name {sortField === 'lastName' && '↓'}
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {names.map((person) => (
-            <tr key={person.id}>
-              <td>{person.firstName}</td>
-              <td>{person.lastName}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <NamesTable names={names} sortField={sortField} handleSort={handleSort} />
     </div>
   );
 };

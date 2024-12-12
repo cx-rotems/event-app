@@ -2,6 +2,7 @@ import  { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import '../styles/Doorman.css';
+import NamesTable from './NamesTable';
 
 const DoormanPage = () => {
   const [names, setNames] = useState([]);
@@ -53,39 +54,18 @@ const DoormanPage = () => {
 
   return (
     <div className="admin-page">
-      <div className="doorman-container">
-        <h2>Doorman Dashboard</h2>
-        <button className="logout-button" onClick={handleLogout}>Logout</button>
-        
-        <table>
-          <thead>
-            <tr>
-              <th onClick={() => handleSort('firstName')}>
-                First Name {sortField === 'firstName' && '↓'}
-              </th>
-              <th onClick={() => handleSort('lastName')}>
-                Last Name {sortField === 'lastName' && '↓'}
-              </th>
-              <th>Arrived</th>
-            </tr>
-          </thead>
-          <tbody>
-            {names.map((person) => (
-              <tr key={person.id}>
-                <td>{person.firstName}</td>
-                <td>{person.lastName}</td>
-                <td>
-                  <input
-                    type="checkbox"
-                    checked={person.arrived}
-                    onChange={() => handleCheckboxChange(person.id, person.arrived)}
-                  />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+ 
+      <div className="header-container" style={{ display: 'flex', alignItems: 'center' }}>
+          <h2>Doorman Dashboard</h2>
+          <button className="logout-button" onClick={handleLogout} style={{ marginLeft: '10px' }}>Logout</button>
       </div>
+      
+      <NamesTable 
+          names={names} 
+          handleSort={handleSort} 
+          handleCheckboxChange={handleCheckboxChange} 
+          sortField={sortField} 
+        />
     </div>
   );
 };

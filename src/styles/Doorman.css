@@ -12,12 +12,12 @@
     transform: translate(-50%, -50%);
   }
 
-.doorman-container {
+.doorman-header {
   display: flex;
   flex-direction: column; /* Stack children vertically */
   align-items: center; /* Center children horizontally */
   justify-content: center; /* Center children vertically */
-  min-height: 100vh; /* Full viewport height */
+  min-height: 10vh; /* Full viewport height */
   padding: 20px; /* Padding for the sides */
   max-width: 800px; /* Limit the width of the container */
   margin: 0 auto; /* Center the container horizontally */
