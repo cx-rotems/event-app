@@ -52,6 +52,22 @@ const AdminPage = () => {
     setNames(sortedNames);
   };
 
+  const handleCheckboxChange = async (id, arrived) => {
+    try {
+      await fetch(`/api/names/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ arrived: !arrived }),
+      });
+      fetchNames();
+    } catch (error) {
+      console.error('Error updating arrival status:', error);
+    }
+  };
+
+
   const handleLogout = () => {
     logout();
     navigate('/', { replace: true });
@@ -84,7 +100,12 @@ const AdminPage = () => {
         <button className="submit-button" type="submit">Add Person</button>
       </form>
 
-      <NamesTable names={names} sortField={sortField} handleSort={handleSort} />
+      <NamesTable 
+        names={names} 
+        sortField={sortField} 
+        handleSort={handleSort}  
+        handleCheckboxChange={handleCheckboxChange} 
+      />
     </div>
   );
 };
