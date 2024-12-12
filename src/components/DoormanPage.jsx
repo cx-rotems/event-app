@@ -62,6 +62,7 @@ const DoormanPage = () => {
       
       <NamesTable 
           names={names} 
+          isAdmin={false}
           handleSort={handleSort} 
           handleCheckboxChange={handleCheckboxChange} 
           sortField={sortField} 
