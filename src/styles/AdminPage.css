@@ -91,4 +91,26 @@
 
 .names-table tbody tr:hover {
   background-color: #f8f9fa;
+}
+
+@media (max-width: 768px) {
+  .admin-page {
+    padding: 10px;
+  }
+
+  .admin-header {
+    flex-direction: column;
+  }
+
+  .admin-form {
+    padding: 10px;
+  }
+
+  .form-group input {
+    padding: 6px;
+  }
+
+  .submit-button {
+    padding: 6px 12px;
+  }
 } 
