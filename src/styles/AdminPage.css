@@ -10,6 +10,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  box-sizing: border-box;
 }
 
 .admin-header {
@@ -112,5 +113,11 @@
 
   .submit-button {
     padding: 6px 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
   }
 } 
