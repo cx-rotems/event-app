@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 .doorman-page {
     padding: 20px;
     max-width: 800px;
@@ -85,3 +89,18 @@ input[type="checkbox"] {
     padding: 6px 12px; /* Adjust button padding */
   }
 } 
+
+form {
+  display: flex;
+  flex-direction: column; /* Ensure this is appropriate for your layout */
+} 
+
+img {
+  width: 100%; /* Ensure images are responsive */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.admin-page {
+  position: absolute; /* Ensure this is necessary */
+  min-height: 10vh; /* Ensure this does not push content out */
+}

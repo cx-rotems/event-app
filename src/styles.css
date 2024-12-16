@@ -60,4 +60,28 @@ html, body {
 
 #root {
   height: 100%;
+}
+
+/* Base styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Mobile styles */
+@media (max-width: 600px) {
+    body {
+        font-size: 14px; /* Adjust font size for mobile */
+    }
+    .container {
+        padding: 10px; /* Adjust padding */
+    }
+    .login-form {
+        display: flex;
+        flex-direction: column; /* Stack elements vertically */
+    }
+    .login-button {
+        width: 100%; /* Full width button */
+    }
 } 
