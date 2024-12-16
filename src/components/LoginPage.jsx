@@ -14,7 +14,7 @@ const LoginPage = () => {
     e.preventDefault();
     
     try {
-      if (username === 'admin' && password === 'admin123') {
+      if (username === 'tovli' && password === 'tovlitovli') {
         login('admin');
         navigate('/admin', { replace: true });
       } else if (username === 'doorman' && password === 'doorman123') {

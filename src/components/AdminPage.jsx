@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import '../styles/AdminPage.css';
 import NamesTable from './NamesTable';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://52.215.31.82:8080';
+
 
 const AdminPage = () => {
   const [names, setNames] = useState([]);
@@ -18,7 +20,7 @@ const AdminPage = () => {
 
   const fetchNames = async () => {
     try {
-      const response = await fetch('/api/names');
+      const response = await fetch(`${API_BASE_URL}/api/names`);
       const data = await response.json();
       setNames(data);
     } catch (error) {
@@ -29,7 +31,7 @@ const AdminPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await fetch('/api/names', {
+      await fetch(`${API_BASE_URL}/api/names`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -54,7 +56,7 @@ const AdminPage = () => {
 
   const handleCheckboxChange = async (id, arrived) => {
     try {
-      await fetch(`/api/names/${id}`, {
+      await fetch(`${API_BASE_URL}/api/names/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -69,7 +71,7 @@ const AdminPage = () => {
 
   const handleRemove = async (id) => {
     try {
-      await fetch(`/api/names/${id}`, {
+      await fetch(`${API_BASE_URL}/api/names/${id}`, {
         method: 'DELETE',
       });
       fetchNames();

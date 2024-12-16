@@ -1,4 +1,4 @@
-import  { useState, useEffect } from 'react';
+import  { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import '../styles/Doorman.css';
@@ -9,24 +9,25 @@ const DoormanPage = () => {
   const [sortField, setSortField] = useState('firstName');
   const navigate = useNavigate();
   const { logout } = useAuth();
-
-  useEffect(() => {
-    fetchNames();
-  }, []);
-
-  const fetchNames = async () => {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://52.215.31.82:8080';
+  
+  const fetchNames = useCallback(async () => {
     try {
-      const response = await fetch('/api/names');
+      const response = await fetch(`${API_BASE_URL}/api/names`);
       const data = await response.json();
       setNames(data);
     } catch (error) {
       console.error('Error fetching names:', error);
     }
-  };
+  }, [API_BASE_URL]);
+
+  useEffect(() => {
+    fetchNames();
+  }, [fetchNames]);
 
   const handleCheckboxChange = async (id, arrived) => {
     try {
-      await fetch(`/api/names/${id}`, {
+      await fetch(`${API_BASE_URL}/api/names/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
