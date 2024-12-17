@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import '../styles/AdminPage.css';
 import NamesTable from './NamesTable';
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://52.215.31.82:8080';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'door-manager.org::8080';
 
 
 const AdminPage = () => {
