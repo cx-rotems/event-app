@@ -5,7 +5,7 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-const API_BASE = process.env.VITE_API_BASE_URL || 'http://52.215.31.82:8080';
+const API_BASE = process.env.VITE_API_BASE_URL || 'door-manager.org';
 const HOST_URL= process.env.VITE_HOST_URL  || 'localhost';
 const HOST_PORT = process.env.VITE_HOST_PORT || 5173;
 

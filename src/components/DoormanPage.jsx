@@ -9,7 +9,7 @@ const DoormanPage = () => {
   const [sortField, setSortField] = useState('firstName');
   const navigate = useNavigate();
   const { logout } = useAuth();
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://52.215.31.82:8080';
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'door-manager.org';
   
   const fetchNames = useCallback(async () => {
     try {
